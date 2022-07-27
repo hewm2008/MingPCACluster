@@ -1,0 +1,406 @@
+#!/usr/bin/perl -w
+use strict;
+use lib "/hwfssz4/BC_PUB/Software/03.Soft_ALL/PerlInfo/lib/perl5/";
+use Getopt::Long;
+use FindBin qw($Bin $RealBin);
+use Data::Dumper;
+
+
+sub  usage
+{
+	print STDERR <<USAGE;
+
+	Version:1.08         hewm2008\@gmail.com
+
+	Usage: ploteig  -InPCA  pca.eigenvec -OutPrefix Fig\n
+
+		Options
+
+		-InPCA        <s>   : InPut File of PCA 
+		-OutPrefix    <s>   : OutPut file prefix 
+
+		-help               : Show more help [hewm2008]
+
+USAGE
+}
+
+
+sub  usage2
+{
+	usage();
+	print STDERR <<USAGE;
+		-columns      <s>   : the columns to plot a:b [3:4]
+		-ColShap            : colour <=> shape for cluster or subpop 
+		-border       <i>   : how to plot the border (1,2,4,8,3,31) [3]
+		-title        <s>   : title (legend) [PCA]
+		-keystyle     <s>   : put key at top right  default(in) [outside]box [outside]
+		-pointsize    <i>   : point size for plot [3]
+
+		-BinDir       <s>   : The Bin Dir of gnuplot/R/ps2pdf/convert [\$PATH]
+
+USAGE
+	#-Soft         <s>   : Use the gnuplot or R [gnuplot]
+	#-pops         <s>   : Populations to plot, eg  -p GA:GB:GC [ALL]
+}
+
+if($#ARGV<0)
+{
+	usage ;exit(1) ;
+}
+
+my $InPCA;
+my $help;
+my $OutPrefix;
+my $BinDir;
+my $Soft="gnuplot";
+my $columns="4:5";
+my $pops="";
+my $title="PCA";
+my $border=3;
+my $pointsize=3;
+my $keystyle="outside";
+my $ColShap;
+
+GetOptions(
+	"InPCA:s"=>\$InPCA,
+	"OutPrefix:s"=>\$OutPrefix,
+	"BinDir:s"=>\$BinDir,
+	"Soft:s"=>\$Soft,
+	"columns:s"=>\$columns,
+	"pops:s"=>\$pops,
+	"title:s"=>\$title,
+	"border:s"=>\$border,
+	"pointsize:s"=>\$pointsize,
+	"keystyle:s"=>\$keystyle,
+	"help"=>\$help,
+	"ColShap"=>\$ColShap,
+);
+
+
+#############swimming in the sky and flying in the sea #########
+
+if (  defined($help)  )
+{
+	usage2 ;
+	exit(1) ;
+}
+if ( (!defined($InPCA))  ||  (!defined($OutPrefix)) )
+{
+	usage ;
+	print "\t\tMust Para [-InPCA] or [-OutPrefix] must be in \n\n";
+	exit(1) ;
+}
+
+############## find gnuplot Path  ################
+
+my $bingnuplot=`which gnuplot  2> /dev/null `;chomp $bingnuplot;
+$bingnuplot="/usr/local/bin/gnuplot" unless (-e $bingnuplot);
+$bingnuplot="/usr/bin/gnuplot" unless (-e $bingnuplot);
+$bingnuplot="/share/app/gnuplot-5.0.1/bin/gnuplot" unless (-e $bingnuplot);
+if  ( !(-e $bingnuplot) )
+{
+	$bingnuplot=`which gnuplot  2> /dev/null `;chomp $bingnuplot;
+}
+$bingnuplot="$Bin/gnuplot" unless (-e $bingnuplot);
+if (defined $BinDir)
+{
+	my $tmp="$BinDir/gnuplot";
+	if (-e $tmp) {$bingnuplot=$tmp;}
+}
+
+
+
+############## find ps2pdf Path  ################
+
+my  $ps2pdf="/usr/local/bin/ps2pdf" ;
+$ps2pdf="/usr/bin/ps2pdf" unless (-e $ps2pdf);
+$ps2pdf="/share/app/ps2pdf/bin/ps2pdf" unless (-e $ps2pdf);
+$ps2pdf="$Bin/ps2pdf" unless (-e $ps2pdf);
+if  ( !(-e $ps2pdf) )
+{
+	$ps2pdf=`which ps2pdf  2> /dev/null `;chomp $ps2pdf;
+}
+if (defined $BinDir)
+{
+	my $tmp="$BinDir/ps2pdf";
+	if (-e $tmp) {$ps2pdf=$tmp;}
+}
+
+
+
+############## find convert Path  ################
+
+my  $convert="/usr/local/bin/convert" ;
+$convert="/usr/bin/convert" unless (-e $convert);
+if  ( !(-e $convert) )
+{
+	$convert=`which convert  2> /dev/null `;chomp $convert;
+}
+$convert="$Bin/convert" unless (-e $convert);
+if (defined $BinDir)
+{
+	my $tmp="$BinDir/convert";
+	if (-e $tmp) {$convert=$tmp;}
+}
+
+
+############## find Rscript Path  ################
+
+my  $Rscript="/hwfssz4/BC_PUB/Software/03.Soft_ALL/R-3.5.1/bin/Rscript" ;
+if  ( !(-e $Rscript) )
+{
+	$Rscript=`which Rscript  2> /dev/null `;chomp $Rscript;
+}
+$Rscript="/usr/bin/Rscript" unless (-e $Rscript);
+$Rscript="/usr/local/bin/Rscript" unless (-e $Rscript);
+$Rscript="$Bin/Rscript" unless (-e $Rscript);
+$Rscript="/share/app/R-3.5.2/bin/Rscript" unless (-e $Rscript);
+if  ( !(-e $Rscript) )
+{
+	$Rscript=`which Rscript  2> /dev/null `;chomp $Rscript;
+}
+
+if (defined $BinDir)
+{
+	my $tmp="$BinDir/Rscript";
+	if (-e $tmp) {$Rscript=$tmp;}
+}
+
+
+
+
+if  ( (!(-e $bingnuplot))   &&  (!(-e $Rscript))   )
+{
+	print "\tCan't find the [gnuplot] or [Rscript] at \$PATH or \$BinDir\n";
+	print "\tplease Check at it\n";exit;
+}
+elsif (!(-e $bingnuplot))
+{
+	print "\tCan't find the [gnuplot] at \$PATH or \$BinDir\n";
+	print "\tyou can  export it to get more Fig\n";
+}
+elsif  (!(-e $Rscript))
+{
+	print "\tCan't find the [Rscript] at \$PATH or \$BinDir\n";
+	print " \tyou can  export it to get more Fig\n";
+}
+
+
+
+
+
+
+my $c1=4; my $c2=5;
+($c1, $c2) = split ":", $columns ;
+my $ShiftC1=$c1-1;
+my $ShiftC2=$c2-1;
+
+
+
+
+if ( -e $bingnuplot  )
+{
+
+	open (FF, $InPCA) || die "can't open $InPCA\n" ;
+	$_=<FF>; my @head=split ;
+	my %tmp=();
+	my %hashFile=();
+	my $ComTTT=2;
+	if (defined $ColShap )
+	{
+		$ComTTT=1;
+	}
+
+	while($_=<FF>)
+	{			
+		next if ($_ =~ /\#/) ;
+		chomp;
+		my @inf=split ;
+		$hashFile{$inf[$ComTTT]}++;
+		if (!exists $tmp{$inf[$ComTTT]})
+		{
+			$tmp{$inf[$ComTTT]}="$_\n";
+		}
+		else
+		{
+			$tmp{$inf[$ComTTT]}=$tmp{$inf[$ComTTT]}."$_\n";
+		}
+	}
+	close FF ;
+
+	my @PopSort=sort {$hashFile{$b}<=>$hashFile{$a}} keys %hashFile;
+	foreach my $pop (@PopSort)
+	{
+		my $TmpOUTFileName="$OutPrefix.tmp.$pop.xtxt";
+		$hashFile{$pop}=$TmpOUTFileName;
+		open (FF, ">$TmpOUTFileName" ) || die "can't open $TmpOUTFileName\n" ;
+		print FF $tmp{$pop};
+		close FF;
+	}
+
+
+
+	my $gnfile = "$OutPrefix.tmp.gnu.xtxt" ;
+	my $psfile= "$OutPrefix.gn.$head[$ShiftC1]_$head[$ShiftC2].ps" ;
+	my $pdffile= "$OutPrefix.gn.$head[$ShiftC1]_$head[$ShiftC2].pdf" ;
+
+
+	open (GG, ">$gnfile") || die "can't open $gnfile\n" ;
+#	print GG "##" if (-e  $ps2pdf) ;
+	print GG "set terminal postscript color\n" ;
+	print GG "set xtics nomirror\nset ytics nomirror\n" ;
+#print GG "unset x2tics\nunset y2tics\n";
+	print GG "set border $border\n" ;
+	print GG "set title  \"$title\" \n" ; 
+	print GG "set key $keystyle\n" ; 
+	print GG "set xlabel  \"$head[$ShiftC1]\" \n" ; 
+	print GG "set ylabel  \"$head[$ShiftC2]\" \n" ; 
+#print GG "set xlabel  \"eigenvector $c1\" \n" ; 
+#print GG "set ylabel  \"eigenvector $c2\" \n" ; 
+	print GG "plot " ;
+	foreach my $pop (@PopSort)
+	{
+		my  $dfile=$hashFile{$pop};
+		print GG " \"$dfile\" using $c1:$c2 title \"$pop\" ";
+		print GG ", \\\n" unless ($pop eq $PopSort[-1]);
+	}
+
+	print GG "\n";
+	print GG "## " if (-e  $ps2pdf);
+	print GG "pause 9999\n";
+	close GG ;
+
+	system ( "cat    $gnfile  | $bingnuplot   > $psfile" );
+
+
+	if ( -e  $ps2pdf)
+	{
+		system (" $ps2pdf  $psfile  $pdffile " );
+	}
+	elsif ( -e  $convert)
+	{
+		system (" $convert  $psfile  $pdffile " );
+	}
+
+	system(" rm -rf  $OutPrefix.tmp.* ");
+
+}
+
+
+
+
+
+######################swimming in the sky and flying in the sea ########################
+
+
+if ( -e $Rscript  )
+{
+	open (FF, $InPCA) || die "can't open $InPCA\n" ;
+	$_=<FF>; my @head=split ;
+	close FF;
+	my $colour=$head[2]; my $shape=$head[1];
+	if (defined $ColShap)
+	{
+		$colour=$head[1];  $shape=$head[2];
+	}
+	my $pdffile= "$OutPrefix.r.$head[$ShiftC1]_$head[$ShiftC2].pdf" ;
+	open (CON, ">$OutPrefix.plot.r") || die "input file can't open $!";
+
+	my $cofi= <<USAGE;
+if(!require(gplots)) install.packages("gplots")
+if(!require(ggplot2)) install.packages("ggplot2")
+library(gplots)
+library(ggplot2)
+read.table("$InPCA",h=T)->PCA
+
+grc = factor(PCA[["$shape"]])
+shape_level <- nlevels(grc)
+if (shape_level < 15){ shapes = (0:shape_level) %% 15}else{ shapes = c(0:14,c((15:shape_level) %% 110 + 18)) }
+
+
+pdf("$pdffile")
+ggplot(data = PCA, mapping = aes(x = $head[$ShiftC1], y = $head[$ShiftC2],colour=$colour,shape =$shape)) + geom_point(size = $pointsize ) +ggtitle("$title") + theme(plot.title = element_text(hjust = 0.5)) 
+dev.off();
+
+pdf("$OutPrefix.r.$head[$ShiftC1]_$head[5].pdf")
+ggplot(data = PCA, mapping = aes(x = $head[$ShiftC1], y = $head[5],colour=$colour,shape =$shape)) + geom_point(size = $pointsize) +ggtitle("$title") + theme(plot.title = element_text(hjust = 0.5)) 
+dev.off();
+
+
+USAGE
+	print CON  $cofi;
+=cut
+pdf("$OutPrefix.r.PCA123.pdf")
+ggplot(data = PCA, mapping = aes(x = $head[$ShiftC1], y = $head[$ShiftC2],z= $head[5],colour=$head[2],shape =$head[1])) + geom_point(size = 3) +ggtitle("$title") + theme(plot.title = element_text(hjust = 0.5)) + view_camera(angle=(31.5,65,125),fov=100000)
+dev.off();
+=cut
+
+$InPCA=~s/eigenvec/evaluation/ ;
+
+if  (-e $InPCA )
+{
+	$cofi= <<USAGE;
+read.table("$InPCA",h=T)->SSE
+pdf("$OutPrefix.K_SSE.pdf")
+ggplot(data = SSE, mapping = aes(x =K,y=SSE),color=season) +geom_line(size=2,linetype=1)+geom_point(size = $pointsize) 
+dev.off()
+pdf("$OutPrefix.K_DBi.pdf")
+ggplot(data = SSE, mapping = aes(x =K,y=DBi),color=season) +geom_line(size=2,linetype=1)+geom_point(size = $pointsize)
+dev.off()
+USAGE
+	print CON  $cofi;
+
+
+
+	$InPCA=~s/evaluation/cellbin.gz/;
+	if  (-e $InPCA )
+	{
+		$InPCA=~s/cellbin.gz/eigenvec/;
+		open (IYY,"$InPCA") || die "input file can't open $!";
+		open (OUTEE,">$OutPrefix.cluster.tmp") || die "input file can't open $!";
+		print OUTEE  "XX\tYY\tCluster\n";
+		<IYY>;
+		while($_=<IYY>)
+		{
+			chomp ;
+			my @inf=split ;
+			my @BBB=split/\_/,$inf[0];
+			print OUTEE "$BBB[1]\t$BBB[2]\t$inf[2]\n";
+		}
+		close IYY;
+		close OUTEE;
+	$cofi= <<USAGE;
+read.table("$OutPrefix.cluster.tmp",h=T)->STO
+pdf("$OutPrefix.Cluster.pdf")
+ggplot(data = STO, mapping = aes(x =XX,y=YY,color=Cluster)) +geom_point(size = $pointsize )+scale_color_brewer(palette = "Dark2")
+dev.off()
+USAGE
+	print CON  $cofi;
+
+
+	}
+
+
+}
+
+close CON;
+
+
+system ("  $Rscript     $OutPrefix.plot.r    ");
+if (-e  "$OutPrefix.Cluster.pdf")
+{
+	if ( -e  $convert)
+	{
+		print " $convert  $OutPrefix.Cluster.pdf  $OutPrefix.Cluster.png \n" ;
+		system (" $convert $OutPrefix.Cluster.pdf  $OutPrefix.Cluster.png " );
+	}
+}
+
+}
+
+print "\tALL done\n";
+
+######################swimming in the sky and flying in the sea ###########################
+
+
+

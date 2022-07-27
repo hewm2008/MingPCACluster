@@ -3,22 +3,22 @@
 A new simple and efficient software to PCA and Cluster For popolation VCF File or STOmics gem File 
 
 ###  1 Introduction
-<b>MingPCACluster</b>  æ˜¯äºåŸºäºVCFå¼€å‘çš„PCAåˆ†æå’Œèšç±»è½¯ä»¶ï¼ŒåŒæ—¶å…¼å¹¶äº†Genotype ç­‰æ ¼å¼è½¯ä»¶ï¼ŒåŒæ—¶å¼€å‘é’ˆå¯¹æ—¶ç©ºå•ç»†èƒè¡¨è¾¾é‡çš„æ ¼å¼ï¼ˆxx.gem.gzï¼‰æ–‡ä»¶ï¼ˆbetaåŠŸèƒ½ï¼‰ã€‚
-å³åªè¦å¯¹åº”çš„ä¸€ä¸ªè¾“å…¥æ–‡ä»¶è¿›æ¥ï¼Œè¿™PCAå’Œä½œå›¾åˆ†ç»„ç­‰ä¸€ä½åˆ°ä½ã€‚
+<b>MingPCACluster</b>  ÊÇÓÚ»ùÓÚVCF¿ª·¢µÄPCA·ÖÎöºÍ¾ÛÀàÈí¼ş£¬Í¬Ê±¼æ²¢ÁËGenotype µÈ¸ñÊ½Èí¼ş£¬Í¬Ê±¿ª·¢Õë¶ÔÊ±¿Õµ¥Ï¸°û±í´ïÁ¿µÄ¸ñÊ½£¨xx.gem.gz£©ÎÄ¼ş£¨beta¹¦ÄÜ£©¡£
+¼´Ö»Òª¶ÔÓ¦µÄÒ»¸öÊäÈëÎÄ¼ş½øÀ´£¬ÕâPCAºÍ×÷Í¼·Ö×éµÈÒ»Î»µ½Î»¡£
 </br>
 </br> keyword  : VCF2PCA ;&nbsp;&nbsp;&nbsp;&nbsp;    VCF2Kinship ;&nbsp;&nbsp;&nbsp;&nbsp; cluster;&nbsp;&nbsp;&nbsp;&nbsp; k-means ;&nbsp;&nbsp;&nbsp;&nbsp; cellbin ;&nbsp;&nbsp;&nbsp;&nbsp;STOmics
 
-</br>äº®ç‚¹ï¼š
+</br>ÁÁµã£º
 </br>1  The result is the same with [tassel](https://www.maizegenetics.net/tassel),[gapit](https://zzlab.net/GAPIT/) and [gcta](https://yanglab.westlake.edu.cn/software/gcta/#Overview) , just the difference in precision.
-</br>2  åŠŸèƒ½æœ‰ 1 å¤šç§kinshipçŸ©é˜µ 2  PCAç»“æœ 3  èšç±»ç»“æœ  å’Œ4 ä»¥clusteræŸ“è‰²å¹¶ä½œå›¾ã€‚
-</br>3  ä¸€ä¸ªVCFè¾“å…¥ï¼Œä¸€æ­¥åˆ°ä½ï¼Œæ–¹ä¾¿ç”¨æˆ·ä½¿ç”¨.
-</br>4  è¾¹è¯»è¾¹ç®—ï¼Œå†…å­˜å‰¥ç¦»å—ä½ç‚¹å¤šå°‘çš„å½±å“ï¼ˆæ—¶ç©ºç»„æ˜¯å‰¥ç¦»å—åŸºå› æ•°é‡å¤šå°‘çš„å½±å“ï¼‰ï¼Œå†…å­˜åªå—æ ·å“é‡å½±å“ï¼Œæ•…ä¸Š100kçš„æ ·å“å½“ä¹Ÿè¡Œï¼Œåœ¨è¿™ä¸ªåŸºç¡€ä¸Šå¼€å‘æ—¶ç©ºç»†èƒPCAå’Œèšç±»,è™½ç„¶æ—¶ç©ºç»„å­¦ä¸Šä¸»è¦æ˜¯æ ·å“å¤šã€‚ï¼ˆ80K 60Gå†…å­˜ï¼‰
-</br>5  Kmeanèšç±»åˆ†æï¼Œå¹¶æ‰¾å‡ºæœ€ä½³Kå€¼ï¼Œå’ŒStructureå’ŒKå€¼ä¸€æ ·. ä½œå›¾ä»¥æ­¤æŸ“è‰²ã€‚
-</br>6  æä½œä½œå›¾å°è„šæœ¬ï¼Œå¯ä»¥ç”¨è¿™ä¸ªè„šæœ¬ä¼˜åŒ–ä½œå›¾ç­‰ã€‚
+</br>2  ¹¦ÄÜÓĞ 1 ¶àÖÖkinship¾ØÕó 2  PCA½á¹û 3  ¾ÛÀà½á¹û  ºÍ4 ÒÔclusterÈ¾É«²¢×÷Í¼¡£
+</br>3  Ò»¸öVCFÊäÈë£¬Ò»²½µ½Î»£¬·½±ãÓÃ»§Ê¹ÓÃ.
+</br>4  ±ß¶Á±ßËã£¬ÄÚ´æ°şÀëÊÜÎ»µã¶àÉÙµÄÓ°Ïì£¨Ê±¿Õ×éÊÇ°şÀëÊÜ»ùÒòÊıÁ¿¶àÉÙµÄÓ°Ïì£©£¬ÄÚ´æÖ»ÊÜÑùÆ·Á¿Ó°Ïì£¬¹ÊÉÏ100kµÄÑùÆ·µ±Ò²ĞĞ£¬ÔÚÕâ¸ö»ù´¡ÉÏ¿ª·¢Ê±¿ÕÏ¸°ûPCAºÍ¾ÛÀà,ËäÈ»Ê±¿Õ×éÑ§ÉÏÖ÷ÒªÊÇÑùÆ·¶à¡££¨80K 60GÄÚ´æ£©
+</br>5  Kmean¾ÛÀà·ÖÎö£¬²¢ÕÒ³ö×î¼ÑKÖµ£¬ºÍStructureºÍKÖµÒ»Ñù. ×÷Í¼ÒÔ´ËÈ¾É«¡£
+</br>6  Ìá×÷×÷Í¼Ğ¡½Å±¾£¬¿ÉÒÔÓÃÕâ¸ö½Å±¾ÓÅ»¯×÷Í¼µÈ¡£
 
 </br>
 
-</br>ç¨‹åºæ˜¯ç»™ä¸€äº›æœ‰åŸºç¡€çš„ç”Ÿä¿¡æœ‹å‹ç”¨çš„ï¼Œè‹¥æ˜¯å°ç™½çœ‹ä¸æ‡‚å°±ç®—äº†ã€‚
+</br>³ÌĞòÊÇ¸øÒ»Ğ©ÓĞ»ù´¡µÄÉúĞÅÅóÓÑÓÃµÄ£¬ÈôÊÇĞ¡°×¿´²»¶®¾ÍËãÁË¡£
 </br>
 </br><b>MingPCACluster</b> MingPCAC is a PCA analysis software format developed based on VCF. It also incorporates Genotype, etc., and develops a file (beta function) for the expression of spatiotemporal cells. That is, as long as the input is satisfied, the PCA and the cluster group are of the same output.
 
@@ -28,15 +28,15 @@ A new simple and efficient software to PCA and Cluster For popolation VCF File o
 The <b>new version</b> will be updated and maintained in <b>[hewm2008/MingPCACluster](https://github.com/hewm2008/MingPCACluster)</b>, please click below website to download the latest version
 </br><p align="center"><b>[hewm2008/MingPCACluster](https://github.com/hewm2008/MingPCACluster)</b></p>
 
-<b> 2.1. linux/MaxOS&nbsp;&nbsp;&nbsp;   [Download](https://github.com/hewm2008/MingPCACluster/archive/v1.00.tar.gz)</b>
+<b> 2.1. linux/MaxOS&nbsp;&nbsp;&nbsp;   [Download](https://github.com/hewm2008/MingPCACluster/archive/v1.08.tar.gz)</b>
   
   </br> <b>2.2 Pre-install</b>
   </br> MingPCACluster is for Linux/Unix/macOS only.
   </br>Before installing,please make sure the following pre-requirements are ready to use.
   </br> 1) [convert](https://linux.die.net/man/1/convert) command is recommended to be pre-installed, although it is not required
   </br> 2) g++   : g++ with [--std=c++11](https://gcc.gnu.org/) > 4.8+ is recommended
- Â </br> 3) zlib  : [zlib](https://zlib.net/) > 1.2.3 is recommended
- Â </br> 4) R     : [R](https://www.r-project.org/) with [ggplot](http://ggplot.yhathq.com/) is recommended
+ ?</br> 3) zlib  : [zlib](https://zlib.net/) > 1.2.3 is recommended
+ ?</br> 4) R     : [R](https://www.r-project.org/) with [ggplot](http://ggplot.yhathq.com/) is recommended
 
 </br> <b>2.3 Install</b>
 </br> Users can install it with the following options:
@@ -55,16 +55,13 @@ The <b>new version</b> will be updated and maintained in <b>[hewm2008/MingPCAClu
 
 ```php
 
-	Usage: Ming2PCACluster  -InVCF  <in.vcf.gz>  -OutPut <outPrefix>
+	Usage: MingPCACluster  -InVCF  <in.vcf.gz>  -OutPut <outPrefix>
 
 		-InVCF        <str>      Input SNP VCF Format
 		-InGenotype   <str>      InPut Genotype File
-		-InSTOgem     <str>      InPut STOmics gem File of MIDCounts(beta)
 		-InKinship    <str>      Input SNP K Kinship File Format
 		-OutPut       <str>      OutPut File Prefix(Kinship PCA etc)
 
-
-		-SubPop       <str>      SubGroup Sample File List[ALLsample]
 		-Method       <int>      Method of Kinship [1-4],defaut [1]
 		                         1:BaldingNicolsKinship(VanRaden/Normalized_IBS)
 		                         2:IBSKinshipImpute 3:IBSKinship 4:p_dis
@@ -75,64 +72,64 @@ The <b>new version</b> will be updated and maintained in <b>[hewm2008/MingPCAClu
 ```
 </br> brief description for function:
 <pre>
-	   #   ç”¨æ³•ä¸€çœ‹å³æ˜ï¼Œæœ€åŸºç¡€çš„ä¸º ä¸€ä¸ªè¾“å…¥å’Œè¾“å‡ºå³å¯ 
-     #       è¾“å…¥æ–‡ä»¶åŸºå› ç»„æ ¼å¼è§  pdf.ä¸»è¦ä¸ºVCFå’Œgemæ–‡ä»¶
-	   #    æ›´å¤šè¯´æ˜åé¢å°†åœ¨çŸ¥ä¹æ›´æ–°
+	   #   ÓÃ·¨Ò»¿´¼´Ã÷£¬×î»ù´¡µÄÎª Ò»¸öÊäÈëºÍÊä³ö¼´¿É 
+     #       ÊäÈëÎÄ¼ş»ùÒò×é¸ñÊ½¼û  pdf.Ö÷ÒªÎªVCFºÍgemÎÄ¼ş
+	   #    ¸ü¶àËµÃ÷ºóÃæ½«ÔÚÖªºõ¸üĞÂ
 
-	    Ming2PCACluster	-InSTOgem	Test.gem.gz	-OutPut	Test	-CellBin	100
+	    MingPCACluster	-InSTOgem	Test.gem.gz	-OutPut	Test	-CellBin	100
 
           ### run without pop.info
-          #   Ming2PCACluster	-InVCF	Khuman.vcf.gz	-OutPut	OUT
+          #   MingPCACluster	-InVCF	Khuman.vcf.gz	-OutPut	OUT
           ### run with  pop.info
-            Ming2PCACluster	-InVCF	Khuman.vcf.gz	-OutPut	OUT	-InSampleGroup	pop.info 
+        MingPCACluster	-InVCF	Khuman.vcf.gz	-OutPut	OUT	-InSampleGroup	pop.info 
 
 </pre>
 
 </br><b>3.1.2  Detail parameters</b>
 ```php
 
-	Usage: Ming2PCACluster  -InVCF  <in.vcf.gz>  -OutPut <outPrefix>
+	Usage: MingPCACluster  -InVCF  <in.vcf.gz>  -OutPut <outPrefix>
 
 		-InVCF        <str>      Input SNP VCF Format
 		-InGenotype   <str>      InPut Genotype File
-		-InSTOgem     <str>      InPut STOmics gem File of MIDCounts(beta)
 		-InKinship    <str>      Input SNP K Kinship File Format
 		-OutPut       <str>      OutPut File Prefix(Kinship PCA etc)
 
-
-		-SubPop       <str>      SubGroup Sample File List[ALLsample]
 		-Method       <int>      Method of Kinship [1-4],defaut [1]
 		                         1:BaldingNicolsKinship(VanRaden/Normalized_IBS)
 		                         2:IBSKinshipImpute 3:IBSKinship 4:p_dis
 
 		-help                    Show more Parameters and help [hewm2008]
 
+		-InSampleGroup <string>   In File of sampleGroup info,format(sample groupA)
 
 		-MAF           <float>    Min minor allele frequency filter [0.001]
 		-Fchr          <str>      Filter the chrX chr[chrX,chrY,X,Y]
-		-Miss           <float>    Max ratio of miss allele filter [0.25]
-		-Het            <float>    Max ratio of het allele filter [1.00]
+		-Miss          <float>    Max ratio of miss allele filter [0.25]
+		-Het           <float>    Max ratio of het allele filter [1.00]
 		-HWE           <float>    Exact test of Hardy-Weinberg Equilibrium for SNP Pvalue[0]
-		-CellBin         <int>      STOmics cell bin[50]
+		-SubPop        <str>      Sub Sample File List to PCA[ALLsample]
 		-KeepRemainVCF            keep the VCF after filter
+		
+		-InSTOgem      <str>      InPut STOmics gem File of MIDCounts(beta)
+		-CellBin       <int>      STOmics cell bin[50]
+		-STOName       <string>   STOmics Sample Name STOName
 
-		-InSampleGroup <string>   In File of sampleGroup info,format(sample groupA)
 
 		-PCANum        <int>      Num of PCA eig [10]
 		-MaxCluNum     <int>      Max Cluster Num to find Best K [12]
-		-BestKRatio       <float>    Get the best K Cluster by deta-SSE Ratio[0.1]
-		-STOName       <string>   STOmics Sample Name STOName
+		-BestKRatio    <float>    Get the best K Cluster by deta-SSE Ratio[0.15]
 
 
 ```
 
 </br><b>3.2.2 Other parameters</b>
-</br>ç¨‹åºä¹Ÿæä¾›äº†ä½œå›¾è½¯ä»¶perl ä½œå›¾è„šæœ¬ï¼ˆè¿™ä¸ªè„šæœ¬åé¢å°†ä¼šä¼˜åŒ–æ›´åŠ¨è¾ƒå¤§ï¼Œä¸»è¦æ˜¯æœ€è¿‘æ—¶é—´è¾ƒå¿™ï¼‰ï¼Œä½œå›¾è„šæœ¬çš„ç®€è¦å‚æ•°è¯´æ˜å¦‚ä¸‹ï¼š
+</br>³ÌĞòÒ²Ìá¹©ÁË×÷Í¼Èí¼şperl ×÷Í¼½Å±¾£¨Õâ¸ö½Å±¾ºóÃæ½«»áÓÅ»¯¸ü¶¯½Ï´ó£¬Ö÷ÒªÊÇ×î½üÊ±¼ä½ÏÃ¦£©£¬×÷Í¼½Å±¾µÄ¼òÒª²ÎÊıËµÃ÷ÈçÏÂ£º
 
 ```php
 ploteig  -h
 
-	Version:1.0         hewm2008@gmail.com
+	Version:1.04         hewm2008@gmail.com
 
 	Usage: ploteig  -InPCA  pca.eigenvec -OutPrefix Fig
 
@@ -142,17 +139,16 @@ ploteig  -h
 		-InPCA        <s>   : InPut File of PCA
 		-OutPrefix    <s>   : OutPut file prefix
 
-		-BinDir       <s>   : The Bin Dir of gnuplot/R/ps2pdf/convert [$PATH]
-
 		-help               : Show more help [hewm2008]
 
 		-columns      <s>   : the columns to plot a:b [3:4]
-		-pops         <s>   : Populations to plot, eg  -p GA:GB:GC [ALL]
-		-border       <i>   : how to plot the border (1,2,4,8,3,31 ) [3]
+		-ColShap            : colour <=> shape for cluster or subpop
+		-border       <i>   : how to plot the border (1,2,4,8,3,31) [3]
 		-title        <s>   : title (legend) [PCA]
 		-keystyle     <s>   : put key at top right  default(in) [outside]box [outside]
 		-pointsize    <i>   : point size for plot [3]
 
+		-BinDir       <s>   : The Bin Dir of gnuplot/R/ps2pdf/convert [$PATH]
 
 ```
 
@@ -162,43 +158,43 @@ ploteig  -h
 |Module |    outFlie    |       Description                                                |
 |:-----:|:-------------------|:------------------------------------------------------------|
 | List  |                    |                                                             |
-|       |out.kinship         |è¾“å‡ºçš„äº²ç¼˜çŸ©é˜µï¼Œå„æ ·å“çš„ä¸¤ä¸¤å…³ç³»                                |
-|       |out.eigenvec        |è¾“å‡ºæœ€ä¼˜èšç±»å’Œpcaç»“æœ                                          |
-|       |out.eigenval        |è¾“å‡ºæœ€ä¼˜èšç±»å’Œpcaç»“æœ                                          |
-|       |out.PCA1_PCA2.pdf   |è¾“å‡ºæŒ‰clusteræŸ“è‰²åçš„pca 1 2å›¾                                 |
-|       |out.K.pdf           |è¾“å‡ºcluster Kå›¾                                               |
-|       |out.cluster         |è¾“å‡ºçš„å„ç§Kçš„clusterèšç±»ç»“æœ                                   |
-|       |Out.cellbin.gz      |è¾“å‡ºbin50 cellçš„ç»“æœï¼Œè‹¥æ˜¯ -InSTOgem                          |
-|       |Out.cluster pdf/png |è¾“å‡ºåæ ‡cluesterå›¾ï¼Œè‹¥æ˜¯-InSTOgem                             |
+|       |out.kinship         |Êä³öµÄÇ×Ôµ¾ØÕó£¬¸÷ÑùÆ·µÄÁ½Á½¹ØÏµ                             |
+|       |out.eigenvec        |Êä³ö×îÓÅ¾ÛÀàºÍpca½á¹û                                        |
+|       |out.eigenval        |Êä³öpca½á¹ûµÄÌØÕ÷ÏòÁ¿                                        |
+|       |out.PCA1_PCA2.pdf   |Êä³ö°´clusterÈ¾É«ºóµÄpca 1 2Í¼                               |
+|       |out.K.pdf           |Êä³öcluster KÍ¼  £¨SSE BDi£©                                 |
+|       |out.cluster         |Êä³öµÄ¸÷ÖÖKµÄcluster¾ÛÀà½á¹û                                 |
+|       |Out.cellbin.gz      |Êä³öbin50 cellµÄ½á¹û£¬ÈôÊÇ -InSTOgem                         |
+|       |Out.cluster pdf/png |Êä³ö×ø±êcluesterÍ¼£¬ÈôÊÇ-InSTOgem                            |
 
 
-ç¤ºä¾‹å›¾è§ä¸Šé¢åº”ç”¨åœºæ™¯ç»™çš„å›¾ã€‚ç¤ºä¾‹å›¾å’Œæ ¼å¼å½“ä¸€çœ‹å³æ˜ï¼Œç›¸å…³å›¾å¯ä»¥è§example 1 å’Œ2
+Ê¾ÀıÍ¼¼ûÉÏÃæÓ¦ÓÃ³¡¾°¸øµÄÍ¼¡£Ê¾ÀıÍ¼ºÍ¸ñÊ½µ±Ò»¿´¼´Ã÷£¬Ïà¹ØÍ¼¿ÉÒÔ¼ûexample 1 ºÍ2
 
 
 ###  4 Example
 ------------
 
-</br>See more detailed usage in the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>[Chinese Documentation](https://github.com/hewm2008/MingPCACluster/blob/main/Ming2PCAClusterä½¿ç”¨æ‰‹å†Œ_manual_chinese.pdf)</b>
-</br>See more detailed usage in the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>[English Documentation](https://github.com/hewm2008/MingPCACluster/blob/main/Ming2PCAClusterä½¿ç”¨æ‰‹å†Œ_manual_chinese.pdf)</b>
+</br>See more detailed usage in the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>[Chinese Documentation](https://github.com/hewm2008/MingPCACluster/blob/main/MingPCAClusterÊ¹ÓÃÊÖ²á_manual_chinese.pdf)</b>
+</br>See more detailed usage in the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>[English Documentation](https://github.com/hewm2008/MingPCACluster/blob/main/MingPCAClusterÊ¹ÓÃÊÖ²á_manual_chinese.pdf)</b>
 </br>See the example directory and  Manual.pdf for more detail.
-</br>å…·ä½“è§è¿™å„¿  Manual.pdf for more detail é‡Œé¢çš„ç¤ºæ„æ•°æ®å’Œè„šæœ¬ï¼ŒåæœŸå°†åœ¨æŸäº›ç½‘å€é‡Šæ”¾ä¸€äº›æ•™ç¨‹
+</br>¾ßÌå¼ûÕâ¶ù  Manual.pdf for more detail ÀïÃæµÄÊ¾ÒâÊı¾İºÍ½Å±¾£¬ºóÆÚ½«ÔÚÄ³Ğ©ÍøÖ·ÊÍ·ÅÒ»Ğ©½Ì³Ì
 </br></br> 
 ../../bin/MingPCACluster      -InVCF        in.vcf.gz     -OutPut outPrefix
-</br>  ç›®å½•  Example/example*/ã€€é‡Œé¢æœ‰è¾“å…¥å’Œè¾“å‡ºå’Œè„šæœ¬ç”¨æ³•ã€‚
+</br>  Ä¿Â¼  Example/example*/¡¡ÀïÃæÓĞÊäÈëºÍÊä³öºÍ½Å±¾ÓÃ·¨¡£
 
 
-* Example 1)åƒäººVCFé‡æµ‹åºSNPåŸºå› å‹
-</br> å…±ä»K äººæ•°æ®chr22  dbsnpé‡Œé¢éšæœºæŒ‘å‡ºäº†3492ä¸ªä½ç‚¹ï¼ŒæŒ‘ CEUï¼ˆ49ï¼‰ ï¼Œ CHBï¼ˆ46ï¼‰ ï¼Œ JPTï¼ˆ56ï¼‰å’Œ YRI ï¼ˆ52ï¼‰å…±203 ä¸ªæ ·å“æ¥åˆ†æã€‚
-</br>èšç±»èµ°åŠ¿ï¼Œbest K
-</br>![K_SSE.png](https://github.com/hewm2008/MingPCACluster/blob/main/xxample/Example1/K_SSE.png)
-</br>PCAç»“æœ
-</br>![PCA.png](https://github.com/hewm2008/MingPCACluster/blob/main/xxample/Example1/PCA.png)
+* Example 1)Ç§ÈËVCFÖØ²âĞòSNP»ùÒòĞÍ
+</br> ¹²´ÓK ÈËÊı¾İchr22  dbsnpÀïÃæËæ»úÌô³öÁË1194¸öÎ»µã£¬Ìô CEU£¨49£© £¬ CHB£¨46£© £¬ JPT£¨56£©ºÍ YRI £¨52£©¹²203 ¸öÑùÆ·À´·ÖÎö¡£
+</br>¾ÛÀà×ßÊÆ£¬best K
+</br>![K_SSE.png](https://github.com/hewm2008/MingPCACluster/blob/main/example/Example1/K_Eva.png)
+</br>PCA½á¹û
+</br>![PCA.png](https://github.com/hewm2008/MingPCACluster/blob/main/example/Example1/PCA.png)
 
 
-* Example 2) cellbinæ—¶ç©ºç»†èƒè¡¨è¾¾é‡pcaå’Œèšç±»  
+* Example 2) cellbinÊ±¿ÕÏ¸°û±í´ïÁ¿pcaºÍ¾ÛÀà  
 
-</br>æ—¶ç©ºåˆ†ææˆ‘åˆäº†è§£ä¸»è¦æ˜¯ï¼šseurat ï¼Œæˆ‘å¾ˆæµ…æ·¡çš„äº†è§£ï¼Œè¿™ä¸ªåŒ…ç”¨åˆ°çš„n*m (næ˜¯æ ·å“ï¼Œmæ˜¯ä½ç‚¹)çš„ç¨€ç–çŸ©é˜µï¼Œå¥½åƒå‘¨è¾¹çš„åšæ—¶ç©ºçš„äººæ€»è¯´å†…å­˜å¾ˆå¤§ï¼Œæˆ‘è¿™æ²¡æœ‰å¯¹æ—¶ç©ºæ•°æ®æ•æ„Ÿï¼Œå¯¹è¡¨è¾¾é‡è¿›è¡Œäº†å–log10. ä¹Ÿç”¨äº†ç¨€ç–çŸ©é˜µ å’Œ n*n, ç”±äºæ—¶ç©ºnæ˜¯æ ·å“é‡å¾ˆå¤§ï¼Œæ€•éš¾ä¸‹é™ã€‚
-</br>åˆä»¥ æˆ‘è¿™ç”¨äº†æ–‡ä»¶å¤§äº(File.gem.gz : 177M )ï¼Œ èŒƒå›´ï¼š XXmin:        4975    XXmax:  23374   YYmin:  2525    YYmax:  20724 )ã€‚å–bin 50ï¼Œ nè¾¾åˆ°çš„88507ï¼Œå³ä¸»è¦88507*88507çš„çŸ©é˜µdoubleä¸Šï¼Œå ç”¨60.742G (ç¨€ç–çŸ©é˜µ5G   çŸ©é˜µ:55G) ã€‚
+</br>Ê±¿Õ·ÖÎöÎÒ³õÁË½âÖ÷ÒªÊÇ£ºseurat £¬ÎÒºÜÇ³µ­µÄÁË½â£¬Õâ¸ö°üÓÃµ½µÄn*m (nÊÇÑùÆ·£¬mÊÇÎ»µã)µÄÏ¡Êè¾ØÕó£¬ºÃÏñÖÜ±ßµÄ×öÊ±¿ÕµÄÈË×ÜËµÄÚ´æºÜ´ó£¬ÎÒÕâÃ»ÓĞ¶ÔÊ±¿ÕÊı¾İÃô¸Ğ£¬¶Ô±í´ïÁ¿½øĞĞÁËÈ¡log10. Ò²ÓÃÁËÏ¡Êè¾ØÕó ºÍ n*n, ÓÉÓÚÊ±¿ÕnÊÇÑùÆ·Á¿ºÜ´ó£¬ÅÂÄÑÏÂ½µ¡£
+</br>³õÒÔ ÎÒÕâÓÃÁËÎÄ¼ş´óÓÚ(File.gem.gz : 177M )£¬ ·¶Î§£º XXmin:        4975    XXmax:  23374   YYmin:  2525    YYmax:  20724 )¡£È¡bin 50£¬ n´ïµ½µÄ88507£¬¼´Ö÷Òª88507*88507µÄ¾ØÕódoubleÉÏ£¬Õ¼ÓÃ60.742G (Ï¡Êè¾ØÕó5G   ¾ØÕó:55G) ¡£
 
 </br> PCA K Fig
 </br>![out1.png](https://github.com/hewm2008/MingPCACluster/blob/main/example/Example2/OUT1.png)
@@ -210,9 +206,9 @@ ploteig  -h
 
 ###  5 Advantages
 
-</br>é€Ÿåº¦å¿«ï¼Œå°‘å†…å­˜    fast speed, low memory
-</br>ç®€æ˜æ˜“ç”¨    Simple and easy to use
-</br>å…å®‰è£…   Free installation
+</br>ËÙ¶È¿ì£¬ÉÙÄÚ´æ    fast speed, low memory
+</br>¼òÃ÷Ò×ÓÃ    Simple and easy to use
+</br>Ãâ°²×°   Free installation
 
 
 ###  6 Discussing
